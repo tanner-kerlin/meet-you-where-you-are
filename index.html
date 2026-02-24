@@ -491,7 +491,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           <div class="cm-icon">✉</div>
           <div>
             <div class="cm-label">Email</div>
-            <div class="cm-value"><a href="mailto:kerlin@transformwithtanner.com">kerlin@transformwithtanner.com</a></div>
+            <div class="cm-value" id="email-display"></div>
           </div>
         </div>
         <div class="contact-method">
@@ -642,6 +642,11 @@ if (contactForm) {
     });
   });
 }
+
+// Render email via JS to prevent Cloudflare obfuscation
+const u = 'kerlin', d = 'transformwithtanner.com';
+const el = document.getElementById('email-display');
+if (el) el.innerHTML = '<a href="mailto:' + u + '@' + d + '">' + u + '@' + d + '</a>';
 
 // Book notify button
 document.getElementById('notify-btn').addEventListener('click', () => {
