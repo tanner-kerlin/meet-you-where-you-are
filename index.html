@@ -491,7 +491,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           <div class="cm-icon">✉</div>
           <div>
             <div class="cm-label">Email</div>
-            <div class="cm-value"><a href="mailto:kerlin@transformwithtanner.com">kerlin@transformwithtanner.com</a></div>
+            <div class="cm-value"><a href="/cdn-cgi/l/email-protection#026967706e6b6c427670636c71646d706f756b766a76636c6c67702c616d6f"><span class="__cf_email__" data-cfemail="1b707e697772755b6f697a75687d7469766c726f736f7a75757e6935787476">[email&#160;protected]</span></a></div>
           </div>
         </div>
         <div class="contact-method">
@@ -614,27 +614,34 @@ const bpObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 if (bpFill) bpObserver.observe(bpFill);
 
-// Contact form — show success message after submission
+// Contact form — AJAX submission to stay on page
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
-    // Let Formspree handle the POST, but also show a success message
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.form-submit');
     const successMsg = document.getElementById('form-success');
-    setTimeout(() => {
-      successMsg.style.display = 'block';
-      contactForm.reset();
-    }, 800);
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    fetch('https://formspree.io/f/xyzoyjno', {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        successMsg.style.display = 'block';
+        contactForm.reset();
+        submitBtn.textContent = 'Sent ✓';
+      } else {
+        submitBtn.textContent = 'Error — Try Again';
+        submitBtn.disabled = false;
+      }
+    }).catch(() => {
+      submitBtn.textContent = 'Error — Try Again';
+      submitBtn.disabled = false;
+    });
   });
 }
 
 // Book notify button
-document.getElementById('notify-btn').addEventListener('click', () => {
-  const input = document.getElementById('notify-email');
-  if (input.value) {
-    alert("You're on the list. We'll notify you the moment the book is ready.");
-    input.value = '';
-  }
-});
-</script>
-</body>
-</html>
+document.getElementBy
