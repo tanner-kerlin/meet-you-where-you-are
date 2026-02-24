@@ -627,4 +627,13 @@ if (contactForm) {
 }
 
 // Book notify button
-document.getElementByI
+document.getElementById('notify-btn').addEventListener('click', () => {
+  const input = document.getElementById('notify-email');
+  if (input.value) {
+    alert("You're on the list. We'll notify you the moment the book is ready.");
+    input.value = '';
+  }
+});
+</script>
+</body>
+</html>
