@@ -513,7 +513,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           </div>
         </div>
       </div>
-      <div class="contact-form reveal">
+      <form class="contact-form reveal" action="https://formspree.io/f/xyzoyjno" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
@@ -549,7 +549,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           <label class="form-label">Message</label>
           <textarea class="form-textarea" placeholder="Tell me about your organization, your event, or what you're looking to solve..."></textarea>
         </div>
-        <button class="form-submit" id="form-submit">Send Inquiry →</button>
+        <button type="submit" class="form-submit">Send Inquiry →</button>
       </div>
     </div>
   </div>
@@ -596,9 +596,6 @@ const bpObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 if (bpFill) bpObserver.observe(bpFill);
 
-document.getElementById('form-submit').addEventListener('click', () => {
-  alert('Thank you for reaching out. Tanner will be in touch within 24 hours.');
-});
 document.getElementById('notify-btn').addEventListener('click', () => {
   const input = document.getElementById('notify-email');
   if (input.value) {
@@ -609,4 +606,5 @@ document.getElementById('notify-btn').addEventListener('click', () => {
 </script>
 </body>
 </html>
+
 
