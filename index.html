@@ -491,7 +491,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           <div class="cm-icon">✉</div>
           <div>
             <div class="cm-label">Email</div>
-            <div class="cm-value"><a href="/cdn-cgi/l/email-protection#026967706e6b6c427670636c71646d706f756b766a76636c6c67702c616d6f"><span class="__cf_email__" data-cfemail="1b707e697772755b6f697a75687d7469766c726f736f7a75757e6935787476">[email&#160;protected]</span></a></div>
+            <div class="cm-value"><a href="mailto:kerlin@transformwithtanner.com">kerlin@transformwithtanner.com</a></div>
           </div>
         </div>
         <div class="contact-method">
@@ -644,4 +644,13 @@ if (contactForm) {
 }
 
 // Book notify button
-document.getElementBy
+document.getElementById('notify-btn').addEventListener('click', () => {
+  const input = document.getElementById('notify-email');
+  if (input.value) {
+    alert("You're on the list. We'll notify you the moment the book is ready.");
+    input.value = '';
+  }
+});
+</script>
+</body>
+</html>
