@@ -473,7 +473,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
           <div class="cm-icon">✉</div>
           <div>
             <div class="cm-label">Email</div>
-            <div class="cm-value">kerlin@transformwithtanner.com</div>
+            <div class="cm-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c57594e5055527c484e5d524f5a534e514b554854485d5252594e125f5351">[email&#160;protected]</a></div>
           </div>
         </div>
         <div class="contact-method">
@@ -558,7 +558,7 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:48px 0
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('solid', window.scrollY > 60);
@@ -566,14 +566,16 @@ window.addEventListener('scroll', () => {
 
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
+  entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
+// Fallback: force all visible after 2s in case observer fails
+setTimeout(() => { reveals.forEach(el => el.classList.add('visible')); }, 2000);
 
 const bpFill = document.getElementById('bp-fill');
 const bpObserver = new IntersectionObserver((entries) => {
@@ -630,14 +632,4 @@ if (contactForm) {
       });
       if (response.ok) {
         contactForm.querySelectorAll('.form-group, .form-row, .form-submit').forEach(el => el.style.display = 'none');
-        document.getElementById('contact-success').style.display = 'block';
-      } else {
-        btn.textContent = 'Try Again →';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Try Again →';
-      btn.disabled = false;
-    }
-  });
-}
+        document.getElementB
